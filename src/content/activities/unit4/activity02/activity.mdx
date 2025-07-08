@@ -1,0 +1,549 @@
+import P5Sketch from '../../../../components/P5Sketch.astro';
+
+#### Implementación de la lista en enlazada
+
+🎯 **Enunciado**: en la actividad anterior usaste una lista enlazada para 
+organizar las diferentes partes, nodos, que componen a la serpiente. Usaste la 
+implementación de la lista enlazada que trae la biblioteca estándar de C++. En 
+esta actividad explorarás una implementación de la lista enlazada. El objetivo 
+de esto es que entiendas cómo funciona la lista enlazada y cómo se podría implementar.
+Nota que digo cómo se podría implementar, ya que no es la única forma de hacerlo.
+
+- Lo primero que harás será generar un nuevo proyecto con el generado 
+de proyectos de openframeworks. Antes de hacer cualquier cosa, vas 
+a compilar y ejecutar el proyecto para asegurarte de que todo 
+funciona. Nota que ya no diré cómo hacerlo, ya que lo has hecho 
+anteriormente. Si no sabes cómo hacerlo, revisa la actividad anterior. 
+- Modifica el archivo ofApp.h así:
+
+``` cpp	
+#pragma once
+
+#include "ofMain.h"
+
+class ofApp : public ofBaseApp {
+public:
+    void setup();
+    void update();
+    void draw();
+    void keyPressed(int key);
+};
+```
+
+- Ahora agrega, debajo de `#include "ofMain.h"`, la definición de la clase `Node`:
+
+``` cpp
+class Node {
+    public:
+        glm::vec2 position;
+        Node* next;
+
+        Node(glm::vec2 pos) : position(pos), next(nullptr) {}
+}
+```
+
+Node es la clase que representa un nodo de la lista enlazada. En 
+la aplicación de la serpiente, cada nodo representa una parte de la serpiente. 
+¿Recuerdas la definición de la lista enlazada? Un nodo tiene un valor y un puntero al 
+siguiente nodo. En este caso el valor es la posición del nodo y el puntero
+es un puntero a otro nodo. La posición es un vector 2D, que representa la
+posición del nodo en la pantalla. El puntero `next` es un puntero a otro
+nodo. El constructor de la clase inicializa la posición del nodo y el puntero
+`next` a `nullptr`. 
+
+**Reflexiona en tu bitácora**: realiza un dibujo de cómo se vería la lista enlazada
+si tuviera 3 nodos. ¿Qué pasaría luego si tuviéramos 4 nodos?
+
+- Ahora agrega la clase LinkedList:
+
+``` cpp
+class LinkedList {
+public:
+    Node* head;
+    Node* tail;
+    int size;
+
+    LinkedList() : head(nullptr), tail(nullptr), size(0) {}
+
+    ~LinkedList() {
+        clear();
+    }
+
+    void push_back(glm::vec2 pos) {
+        Node* newNode = new Node(pos);
+        if (head == nullptr) {
+            head = tail = newNode;
+        }
+        else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+        size++;
+    }
+
+    void pop_back() {
+        if (head == nullptr) return;
+
+        if (head == tail) { // Si solo hay un elemento
+            delete head;
+            head = tail = nullptr;
+        }
+        else {
+            Node* temp = head;
+            while (temp->next != tail) {
+                temp = temp->next;
+            }
+            delete tail;
+            tail = temp;
+            tail->next = nullptr;
+        }
+        size--;
+    }
+
+    void clear() {
+        Node* current = head;
+        while (current != nullptr) {
+            Node* nextNode = current->next;
+            delete current;
+            current = nextNode;
+        }
+        head = tail = nullptr;
+        size = 0;
+    }
+};
+```
+La clase `LinkedList` representa una lista enlazada. Tiene un puntero al 
+primer nodo de la lista, un puntero al último nodo de la lista y un entero que
+representa el tamaño de la lista. 
+
+``` cpp
+public:
+    Node* head;
+    Node* tail;
+    int size;
+```
+
+**Reflexiona en tu bitácora**: dibuja de nuevo la lista enlazada con 3 nodos. Ahora 
+dibuja un objeto de la clase `LinkedList`. A donde apuntan los punteros `head` y `tail`? 
+Qué valor tiene el entero `size`?
+
+**Reflexiona en tu bitácora**: ¿Qué pasaría si el objeto de la clase `LinkedList` 
+no tuviera el puntero a head? ¿Podrías recorrer la lista? ¿Qué pasaría si no tuviera el puntero a tail? 
+¿Podrías agregar un nuevo nodo al final de la lista? ¿Qué pasaría si no tuviera el entero size? 
+¿Podrías saber cuántos nodos hay en la lista? Por favor, reflexiona profundamente sobre estas preguntas. 
+Las respuestas a estas preguntas son importantes para entender cómo funciona la lista enlazada.
+
+El constructor inicializa los punteros a `nullptr` y el tamaño a 0. 
+El destructor llama al método `clear`, que libera la memoria de todos los nodos de la lista. 
+
+``` cpp	
+LinkedList() : head(nullptr), tail(nullptr), size(0) {}
+
+~LinkedList() {
+    clear();
+}
+```
+
+Te estarás preguntando, ¿Qué es eso del destructor? El destructor es un 
+método especial que se llama cuando un objeto de la clase se destruye.
+En este caso, el destructor se llama cuando la lista enlazada se destruye.
+
+**Reflexiona en tu bitácora**: el destructor de la clase `LinkedList` tiene como 
+propósito liberar la memoria que ocupa el objeto de la clase `LinkedList`. ¿Por qué 
+se necesario liberar la memoria que ocupa el objeto y además liberar la memoria de 
+los nodos de la lista? ¿Qué pasaría si no lo hicieras? 
+
+**Reflexiona en tu bitácora**: el objeto de la clase `LinkedList` qué datos tiene? 
+y ¿Cuál es la relación con los nodos de la lista? En este punto te pediré que uses 
+el depurador para ver la memoria y poder analizar las preguntas.
+
+El destructor libera la memoria de todos los nodos de la lista. Esto es
+importante porque si no lo haces, puedes tener fugas de memoria. Una fuga
+de memoria es cuando la memoria que se ha reservado no se libera. Esto
+puede causar que tu programa se quede sin memoria y se bloquee. Por eso 
+es importante liberar la memoria de los nodos de la lista cuando ya no 
+los necesitas. Esto debe hacerse de manera manual en C++, ya que no tienes 
+un recolector de basura como en otros lenguajes de programación, por ejemplo, 
+C#.
+
+**Reflexiona en tu bitácora**: cuando programas en C# no tenías que liberar la 
+memoria de los objetos. ¿Por qué crees que en C++ es necesario liberar la memoria
+de los objetos?
+
+El método `push_back` agrega un nuevo nodo al final de la lista. Si la lista 
+está vacía, el nuevo nodo se convierte en el primer y último nodo de la lista. 
+Si la lista no está vacía, el nuevo nodo se agrega al final de la lista y el puntero `tail`
+se actualiza. 
+
+``` cpp	
+void push_back(glm::vec2 pos) {
+    Node* newNode = new Node(pos);
+    if (head == nullptr) {
+        head = tail = newNode;
+    }
+    else {
+        tail->next = newNode;
+        tail = newNode;
+    }
+    size++;
+}
+```
+
+**Reflexiona en tu bitácora**: realiza varios dibujos donde muestres cómo se 
+vería el objeto de la clase `LinkedList` antes y después de agregar un nuevo nodo. 
+Realiza este ejercicio cuando size sea 0, 1 y 2.
+
+El método `pop_back` elimina el último nodo de la lista. Si
+la lista está vacía, no hace nada. Si la lista tiene un solo nodo, se
+elimina el nodo y se actualizan los punteros `head` y `tail` a `nullptr`.
+Si la lista tiene más de un nodo, se recorre la lista hasta llegar al
+penúltimo nodo, se elimina el último nodo y se actualiza el puntero `tail`
+al penúltimo nodo. 
+
+``` cpp	
+void pop_back() {
+    if (head == nullptr) return;
+
+    if (head == tail) { // Si solo hay un elemento
+        delete head;
+        head = tail = nullptr;
+    }
+    else {
+        Node* temp = head;
+        while (temp->next != tail) {
+            temp = temp->next;
+        }
+        delete tail;
+        tail = temp;
+        tail->next = nullptr;
+    }
+    size--;
+}
+```
+
+**Reflexiona en tu bitácora**: realiza varios dibujos donde muestres cómo se 
+vería el objeto de la clase `LinkedList` antes y después de eliminar un nodo. 
+Realiza este ejercicio cuando size sea 0, 1 y 2.
+
+El método `clear` libera la memoria de todos los nodos
+de la lista. Se recorre la lista y se elimina cada nodo. Al final, se
+actualizan los punteros `head` y `tail` a `nullptr` y el tamaño a 0.
+
+``` cpp
+void clear() {
+    Node* current = head;
+    while (current != nullptr) {
+        Node* nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
+    head = tail = nullptr;
+    size = 0;
+}
+```
+
+**Reflexiona en tu bitácora**: realiza dibujos que muestren cómo se vería el 
+objeto de la clase `LinkedList` durante la ejecución del método `clear`.
+
+Ahora actualiza el archivo ofApp.cpp así:
+
+``` cpp
+#include "ofApp.h"
+
+//--------------------------------------------------------------
+void ofApp::setup() {
+    backgroundHue = 0;
+
+    // Inicializa la serpiente con varios nodos en el centro
+    for (int i = 0; i < 20; i++) {
+        snake.push_back(glm::vec2(ofGetWidth() / 2, ofGetHeight() / 2));
+    }
+}
+
+//--------------------------------------------------------------
+void ofApp::update() {
+    if (snake.head == nullptr) return;
+
+    glm::vec2 target = glm::vec2(ofGetMouseX(), ofGetMouseY());
+    float interpolationFactor = 0.2;
+
+    Node* current = snake.head;
+    while (current != nullptr) {
+        current->position = glm::mix(glm::vec3(current->position, 0.0f), glm::vec3(target, 0.0f), interpolationFactor);
+        target = current->position;
+        current = current->next;
+    }
+
+    backgroundHue = fmod(backgroundHue + 0.1, 255);
+}
+
+//--------------------------------------------------------------
+void ofApp::draw() {
+    ofColor color1 = ofColor::fromHsb(backgroundHue, 150, 240);
+    ofColor color2 = ofColor::fromHsb(fmod(backgroundHue + 128, 255), 150, 240);
+    ofBackgroundGradient(color1, color2, OF_GRADIENT_LINEAR);
+
+    if (snake.head == nullptr) return;
+
+    ofMesh mesh;
+    mesh.setMode(OF_PRIMITIVE_LINE_STRIP);
+    Node* current = snake.head;
+    int index = 0;
+
+    while (current) {
+        float hue = ofMap(index++, 0, snake.size - 1, 0, 255);
+        mesh.addColor(ofColor::fromHsb(hue, 200, 255));
+        mesh.addVertex(glm::vec3(current->position, 0.0f));
+        current = current->next;
+    }
+
+    ofSetLineWidth(2);
+    mesh.draw();
+
+    // Círculos con tamaño y color variable
+    current = snake.head;
+    index = 0;
+    ofNoFill();
+    ofSetLineWidth(2);
+
+    while (current) {
+        float hue = ofMap(index, 0, snake.size - 1, 0, 255);
+        ofSetColor(ofColor::fromHsb(hue, 220, 255));
+        float radius = ofMap(index++, 0, snake.size - 1, 20, 5);
+        ofDrawCircle(current->position.x, current->position.y, radius);
+        current = current->next;
+    }
+}
+
+//--------------------------------------------------------------
+void ofApp::keyPressed(int key) {
+    if (key == 'c') {
+        snake.clear();
+    }
+    else if (key == 'a') {
+        snake.push_back(glm::vec2(ofRandomWidth(), ofRandomHeight()));
+    }
+    else if (key == 'r') {
+        snake.pop_back();
+    }
+    else if (key == 's') {
+        ofSaveFrame();
+    }
+}
+```
+
+**Reflexiona en tu bitácora**: De manera general y sin entrar en detalles finos, 
+¿Qué hace el método `setup`? ¿Qué hace el método `update`? ¿Qué hace el método `draw`? 
+¿Qué hace el método `keyPressed`?
+
+Analiza esta parte del código:
+
+```cpp
+Node* current = snake.head;
+while (current != nullptr) {
+    current->position = glm::mix(glm::vec3(current->position, 0.0f), glm::vec3(target, 0.0f), interpolationFactor);
+    target = current->position;
+    current = current->next;
+}
+```
+Para entender cómo funciona mix, observa antes esta simulación:
+
+<P5Sketch 
+  sketchUrl="/computacionales-2025-20/sketches/interpolation.js" 
+  containerId="interpolation"
+  styleClass="p5-container-interpolation"
+/>
+
+`glm::mix` te permitirá interpolar entre dos vectores. En este caso, estás interpolando 
+entre la posición actual del nodo y la posición del mouse. El tercer parámetro es el factor 
+de interpolación, que va de 0 a 1. Un valor de 0 significa que el nodo no se moverá, un valor 
+de 1 significa que el nodo se moverá completamente a la posición del mouse. Un valor de 0.5 
+significa que el nodo se moverá a la mitad entre su posición actual y la posición del mouse.
+
+Finalmente, analiza la función draw. En esta función se dibuja la serpiente.
+
+Si necesitas repasar el sistema HSB revisa esta simulación:
+
+<P5Sketch 
+  sketchUrl="/computacionales-2025-20/sketches/colorWheel.js" 
+  containerId="colorWheel"
+  styleClass="p5-container-colorWheel"
+/>
+
+Te dejo el código completo.
+
+ofApp.h
+
+```cpp
+#pragma once
+#include "ofMain.h"
+
+class Node {
+public:
+    glm::vec2 position;
+    Node* next;
+
+    Node(glm::vec2 pos) : position(pos), next(nullptr) {}
+};
+
+class LinkedList {
+public:
+    Node* head;
+    Node* tail;
+    int size;
+
+    LinkedList() : head(nullptr), tail(nullptr), size(0) {}
+
+    ~LinkedList() {
+        clear();
+    }
+
+    void push_back(glm::vec2 pos) {
+        Node* newNode = new Node(pos);
+        if (head == nullptr) {
+            head = tail = newNode;
+        }
+        else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+        size++;
+    }
+
+    void pop_back() {
+        if (head == nullptr) return;
+
+        if (head == tail) { // Si solo hay un elemento
+            delete head;
+            head = tail = nullptr;
+        }
+        else {
+            Node* temp = head;
+            while (temp->next != tail) {
+                temp = temp->next;
+            }
+            delete tail;
+            tail = temp;
+            tail->next = nullptr;
+        }
+        size--;
+    }
+
+    void clear() {
+        Node* current = head;
+        while (current != nullptr) {
+            Node* nextNode = current->next;
+            delete current;
+            current = nextNode;
+        }
+        head = tail = nullptr;
+        size = 0;
+    }
+};
+
+
+class ofApp : public ofBaseApp {
+public:
+    LinkedList snake;
+    float backgroundHue;
+
+    void setup();
+    void update();
+    void draw();
+    void keyPressed(int key);
+};
+
+```
+ofApp.cpp
+
+```cpp
+#include "ofApp.h"
+
+//--------------------------------------------------------------
+void ofApp::setup() {
+    backgroundHue = 0;
+
+    // Inicializa la serpiente con varios nodos en el centro
+    for (int i = 0; i < 20; i++) {
+        snake.push_back(glm::vec2(ofGetWidth() / 2, ofGetHeight() / 2));
+    }
+}
+
+//--------------------------------------------------------------
+void ofApp::update() {
+    if (snake.head == nullptr) return;
+
+    glm::vec2 target = glm::vec2(ofGetMouseX(), ofGetMouseY());
+    float interpolationFactor = 0.2;
+
+    Node* current = snake.head;
+    while (current != nullptr) {
+        // glm::mix(x, y, a)
+        // mix performs a linear interpolation x and y using a to weight between them.
+		// The value is computed as x * (1 - a) + y * a.
+        current->position = glm::mix(glm::vec3(current->position, 0.0f), glm::vec3(target, 0.0f), interpolationFactor);
+        target = current->position;
+        current = current->next;
+    }
+
+    backgroundHue = fmod(backgroundHue + 0.1, 255);
+}
+
+//--------------------------------------------------------------
+void ofApp::draw() {
+    ofColor color1 = ofColor::fromHsb(backgroundHue, 150, 240);
+    ofColor color2 = ofColor::fromHsb(fmod(backgroundHue + 128, 255), 150, 240);
+    ofBackgroundGradient(color1, color2, OF_GRADIENT_LINEAR);
+
+    if (snake.head == nullptr) return;
+
+    ofMesh mesh;
+    mesh.setMode(OF_PRIMITIVE_LINE_STRIP);
+    Node* current = snake.head;
+    int index = 0;
+
+    while (current) {
+        float hue = ofMap(index++, 0, snake.size - 1, 0, 255);
+        mesh.addColor(ofColor::fromHsb(hue, 200, 255));
+        mesh.addVertex(glm::vec3(current->position, 0.0f));
+        current = current->next;
+    }
+
+    ofSetLineWidth(2);
+    mesh.draw();
+
+    // Círculos con tamaño y color variable
+    current = snake.head;
+    index = 0;
+    ofNoFill();
+    ofSetLineWidth(2);
+
+    while (current) {
+        float hue = ofMap(index, 0, snake.size - 1, 0, 255);
+        ofSetColor(ofColor::fromHsb(hue, 220, 255));
+        float radius = ofMap(index++, 0, snake.size - 1, 20, 5);
+        ofDrawCircle(current->position.x, current->position.y, radius);
+        current = current->next;
+    }
+}
+
+//--------------------------------------------------------------
+void ofApp::keyPressed(int key) {
+    if (key == 'c') {
+        snake.clear();
+    }
+    else if (key == 'a') {
+        snake.push_back(glm::vec2(ofRandomWidth(), ofRandomHeight()));
+    }
+    else if (key == 'r') {
+        snake.pop_back();
+    }
+    else if (key == 's') {
+        ofSaveFrame();
+    }
+}
+```
+
+📤 **Entrega**: responde las preguntas que te voy dejando en el enunciado. 
+Estas preguntas buscan que leas más lentamente el código y entiendas lo que
+haces.
