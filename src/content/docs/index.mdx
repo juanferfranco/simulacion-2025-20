@@ -1,5 +1,5 @@
 ---
-title: Simulación
+title: Math + Art = Simulación
 description: Entretenimiento Digital
 ---
 
@@ -7,6 +7,8 @@ import { Steps } from '@astrojs/starlight/components';
 import { Badge } from '@astrojs/starlight/components';
 import { FileTree } from '@astrojs/starlight/components';
 import P5Sketch from '../../components/P5Sketch.astro';
+import {Aside} from '@astrojs/starlight/components';
+import CustomAside from '../../components/CustomAside.astro';
 
 <P5Sketch 
   sketchUrl="/simulacion-2025-20/sketches/c13jun2025.js" 
@@ -14,4 +16,14 @@ import P5Sketch from '../../components/P5Sketch.astro';
   styleClass="p5-container-c13jun2025"
 />
 
-Animación de: https://x.com/yuruyurau
+Animación de: https://x.com/yuruyurau  
+
+
+<CustomAside backgroundColor="#2a2a2a" textColor="#ffffff" borderColor="#555">
+No estamos dibujando una criatura.  
+Estamos estableciendo un sistema de reglas matemáticas, 
+y la "criatura"   
+es el patrón que emerge  
+de la interacción de 10,000 puntos que obedecen 
+ciegamente esas reglas.
+</CustomAside>
