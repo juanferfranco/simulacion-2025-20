@@ -1,10 +1,12 @@
-#### Profundizando en las instrucciones del lenguaje ensamblador
+#### Distribuciones de probabilidad
 
-**Enunciado**: el documento "Machine Language" describe dos tipos de instrucciones en el lenguaje ensamblador Hack: A-instructions y C-instructions (páginas 64-69).
+Analicemos juntos y detenidamente [este](https://p5js.org/reference/p5/randomGaussian/) ejemplo.
 
-- ¿Cuál es la función de cada tipo de instrucción?
-- ¿Cómo se representa cada tipo de instrucción en binario?
-- Proporciona al menos 3 ejemplos de cada tipo de instrucción, explicando qué hace cada una. Puedes usar las tablas de las páginas 67 y 69 del documento como referencia para los códigos de operación (comp), destinos (dest) y saltos (jump).
+:::caution[📤 Bitácora] 
+* En tus propias palabras cuál es la diferencia entre una distribución uniforme y una no uniforme de números aleatorios. 
+* Modifica el código de la caminata aleatoria para que utilice una distribución no uniforme, favoreciendo el movimiento hacia la derecha.
+:::
 
-**Entrega**: la solución a cada una de las preguntas planteadas en el enunciado. 
+
+
 

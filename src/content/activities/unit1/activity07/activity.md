@@ -1,10 +1,26 @@
-#### Operaciones aritméticas básicas
+#### Ruido Perlin
 
-Enunciado: Escribe un programa en ensamblador Hack que realice las siguientes operaciones:
+Analicemos junto el concepto de [ruido Perlin](https://natureofcode.com/random/#a-smoother-approach-with-perlin-noise) 
+analizando la figura 0.4: "A graph of Perlin noise values over time (left) and of random noise values over time (right)".
 
-- Guarda el valor 5 en el registro A.
-- Guarda el valor 10 en el registro D.
-- Suma el contenido del registro A y el registro D, y guarda el resultado en el registro D.
-- Resta el valor 3 al contenido del registro D y guarda el resultado en la memoria en la dirección 10.
+:::caution[📤 Bitácora] 
+Una vez has entendido el concepto de ruido Perlin, vas a pensar en una nueva manera de visualizarlo.
 
-**Entrega**: el código del programa en ensamblador Hack y una captura de pantalla del simulador mostrando el estado final de los registros y la memoria (para verificar los resultados).
+* Crea un nuevo sketch en p5.js donde los visualices.
+* Explica el concepto qué resultados esberabas obtener.
+* Copia el código en tu bitácora.
+* Coloca en enlace a tu sketch en p5.js en tu bitácora.
+* Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.
+:::
+
+
+
+**Enunciado**: utiliza el ruido Perlin para generar variaciones aleatorias pero suaves. Construye una aplicación 
+que permita visualizar lo anterior.
+
+**Entrega**: 
+
+- Explica en tus propias palabras la figura 0.4: "A graph of Perlin noise values over time (left) and of random noise values over time (right)"
+- Explica cómo usaste el ruido Perlin para generar las variaciones.
+- El código.
+- Una captura de pantalla que muestre la visualización generada.

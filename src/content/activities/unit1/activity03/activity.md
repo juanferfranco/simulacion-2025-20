@@ -1,11 +1,13 @@
-#### Componentes principales de la arquitectura Hack 
+#### Caminatas aleatorias
 
+Analicemos juntos el código del ejemplo Example 0.1: A Traditional Random Walk del 
+[texto guía](https://natureofcode.com/random/#example-01-a-traditional-random-walk).
 
-**Enunciado**: usando el simulador del computador Hack y el documento ["Machine Language"](https://www.nand2tetris.org/_files/ugd/44046b_7ef1c00a714c46768f08c459a6cab45a.pdf) (páginas 62-72), identifica los componentes principales de la arquitectura Hack:
+:::caution[📤 Bitácora] 
+Realiza el siguiente experimento y reporta los resultados en tu bitácora:
 
-- CPU: ¿Cuáles son sus partes principales? (ALU, registros A y D, PC...).
-- Memoria: ¿Cómo se organiza la memoria en el computador Hack? (RAM, ROM, direcciones...). ¿Qué es un mapa de memoria?
-- Registros A y D: ¿Cuál es la función de cada uno? ¿En qué se diferencian?
-- Contador de programa (PC): ¿Cuál es su función en el ciclo Fetch-Decode-Execute?
-
-**Entrega**: un diagrama de la arquitectura Hack con sus componentes principales etiquetados y una breve descripción de la función de cada componente. Para el diagrama puedes usar la herramienta [draw.io](https://app.diagrams.net/).
+* Modifica el código del ejemplo Example 0.1: A Traditional Random Walk.
+* Antes de ejecutar el código, escribe en tu bitácora qué esperas que suceda.
+* Ejecuta el código y escribe en tu bitácora qué sucedió realmente.
+* Ocurrió lo que esperabas? ¿Por qué crees que sí o por qué crees que no?
+:::

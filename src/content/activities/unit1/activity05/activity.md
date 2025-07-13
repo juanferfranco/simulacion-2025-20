@@ -1,10 +1,13 @@
-#### El ciclo de instrucción paso a paso
+#### Distribución Normal
 
-**Enunciado**: elige uno de los programas que modificaste en las actividades previas. Usando el simulador, ejecuta el programa paso a paso y documenta cada ciclo Fetch-Decode-Execute. Para cada instrucción:
+Analicemos juntos y detenidamente [este](https://natureofcode.com/random/#example-04-a-gaussian-distribution) ejemplo.
 
-- ¿Qué valor tiene el PC al inicio del ciclo?
-- ¿Qué instrucción se busca en la memoria?
-- ¿Cómo se decodifica la instrucción?
-- ¿Qué operación se realiza en la fase Execute? ¿Cómo cambian los valores de los registros A, D y M (memoria)?
+:::caution[📤 Bitácora] 
+Una vez has entendido el concepto de distribución normal, vas a pensar en una nueva manera de visualizarlo.
 
-**Entrega**: una tabla que documente el ciclo Fetch-Decode-Execute para cada instrucción del programa elegido.
+* Crea un nuevo sketch en p5.js que represente una distribución normal.
+* Copia el código en tu bitácora.
+* Coloca en enlace a tu sketch en p5.js en tu bitácora.
+* Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.
+:::
+
