@@ -1,6 +1,6 @@
 #### Creación de obra generativa
 
-Vas a crear una obra generativa interactiva en tiempo real utilizando los conceptos de aleatoriedad has aprendido en esta unidad.  
+Vas a crear una obra generativa interactiva en tiempo real utilizando los conceptos de aleatoriedad que has aprendido en esta unidad.  
 Tu obra debe:
 
 * Usar al menos tres conceptos estudiados en esta unidad COMBINADOS de manera creativa y coherente.
