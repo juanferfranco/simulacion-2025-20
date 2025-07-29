@@ -7,10 +7,10 @@ let position;
 
 function setup() {
     createCanvas(400, 400);
-    posicion = createVector(6,9);
-    console.log(posicion.toString());
-    playingVector(posicion);
-    console.log(posicion.toString());
+    position = createVector(6,9);
+    console.log(position.toString());
+    playingVector(position);
+    console.log(position.toString());
     noLoop();
 }
 
