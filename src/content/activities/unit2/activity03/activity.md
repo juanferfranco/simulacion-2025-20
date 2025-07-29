@@ -1,32 +1,39 @@
-#### Convierte un ciclo while en un ciclo for
+#### Experimenta
 
-**Enunciado**: considera el siguiente programa: 
+Dale una mirada a este código:
 
-``` c
-//Adds 1+...+100.
- int i=1;
- int sum=0;
- 
- while(i <=100){
-    sum+= i;
-    i++;
- }
- ```
+``` js
+let position;
 
- Vamos a transformar este programa a su equivalente usando un ciclo for:
-
- ``` c
-//Adds 1+...+100.
-int sum=0;
-for(int i = 1; i <=100; i++){
-    sum+= i;
+function setup() {
+    createCanvas(400, 400);
+    posicion = createVector(6,9);
+    console.log(posicion.toString());
+    playingVector(posicion);
+    console.log(posicion.toString());
+    noLoop();
 }
- ```
 
-- Analiza los programas anteriores y asegúrate de entender por qué son equivalentes.
-- Convierte la versión del for a ensamblador.
-- No olvides comprobar el funcionamiento de los programas en ensamblador en el simulador.
-- Compara las versiones en ensamblador del while y del for. ¿Qué puedes concluir?
+function playingVector(v){
+    v.x = 20;
+    v.y = 30;
+}
 
-**Entrega**: la solución a las cuestiones planteadas en el enunciado.
+function draw() {
+    background(220);
+    console.log("Only once");
+}
+
+```
+
+:::caution[📤 Bitácora]
+
+- ¿Qué resultado esperas obtener en el programa anterior?
+- ¿Qué resultado obtuviste?
+- Recuerda los conceptos de paso por valor y paso por referencia en programación. Muestra ejemplos de este concepto en 
+javascript. 
+- ¿Qué tipo de paso se está realizando en el código?
+- ¿Qué aprendiste?
+::: 
+
 

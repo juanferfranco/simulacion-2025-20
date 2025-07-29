@@ -1,11 +1,12 @@
-#### Es momento de parar y recordar
+#### Motion 101
 
-**Enunciado**: vas a parar un momento y tratarás de recodar de memoria lo siguiente. Luego, llama 
-al profesor y explícale cada ítem:
+Ahora vas a leer y analizar con mucho detenimiento la sección 
+[Motion with vectors](https://natureofcode.com/vectors/#motion-with-vectors). El autor propone un 
+marco de movimiento llamado motion 101.
 
-- ¿Qué hace esto int *pvar;?  
-- ¿Qué hace esto *pvar = var;?  
-- ¿Qué hace esto var2 = *pvar?  
-- ¿Qué hace esto pvar = &var3?  
+¿En qué consiste motion 101?
 
-**Entrega**: la respuesta a cada pregunta, pero no olvides hacerlo de memoria (quiero que hagas el esfuerzo de recordar), luego verifica con el profesor.
+:::caution[📤 Bitácora]
+- Escribe un breve resumen de motion 101.
+- Crea un ejemplo simple que ilustre los conceptos de motion 101.
+:::

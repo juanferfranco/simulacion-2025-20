@@ -1,13 +1,20 @@
-#### El Poder del Bajo Nivel
+#### Introducción a los vectores
 
-**Enunciado**: reflexiona sobre las siguientes preguntas y documenta tus respuestas en tu bitácora:
+En esta actividad vamos a repasar algunos conceptos básicos de los vectores. Te propondré que analicemos 
+juntos algunos de los ejemplos del texto de guía.
 
-- ¿Por qué crees que es importante para un ingeniero en diseño de entretenimiento digital comprender la programación en ensamblador, sabiendo que es poco probable que te dediques profesionalmente a 
-programar en este nivel?
 
-- ¿Qué ventajas y desventajas ofrece la programación en ensamblador en comparación con lenguajes de alto nivel como Python o Javascript, C++, C#?
+Comencemos por el ejemplo: [Example 1.2: Bouncing Ball with Vectors!](https://natureofcode.com/vectors/#example-12-bouncing-ball-with-vectors)
 
-- ¿Cómo se relaciona el conocimiento de ensamblador con el rendimiento y la optimización en el desarrollo de aplicaciones interactivas interactivas?
 
-**Entrega**: entrada en la bitácora de aprendizaje con la reflexión sobre las preguntas planteadas.
+
+:::caution[📤 Bitácora] 
+- ¿Cómo funciona la suma dos vectores en p5.js?
+- ¿Por qué esta línea position = position + velocity; no funciona?
+
+
+
+
+**Entrega**: escribe en tu bitácora la solución a las preguntas anteriores.
+
 

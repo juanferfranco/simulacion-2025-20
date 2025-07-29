@@ -1,24 +1,8 @@
-#### Experimenta con arreglos
+#### Analiza
 
-**Enunciado**: los arreglos son colecciones de datos en la memoria. 
+Analiza con detenimiento el [ejemplo 1.7](https://natureofcode.com/vectors/#example-17-motion-101-velocity).
 
-Considera el siguiente programa
+:::caution[📤 Bitácora]
+- ¿Cómo se aplica motion 101 en el ejemplo?
+:::
 
-``` cpp
-
-int arr[] = {1,2,3,4,5,6,7,8,9,10};
-int sum = 0;
-
-for (int j = 0; j < 10; j++) {
-    sum = sum + arr[j];
-}
-
-```
-
-- Implementa el programa anterior en lenguaje ensamblador.
-- Considera que los datos del arreglo están almacenados desde la dirección 16. Puedes inicializar 
-manualmente el arreglo. 
-- Es fundamental que hagas la simulación paso a paso y analices con detenimiento el funcionamiento 
-del programa.
-
-**Entrega**: la solución al problema anterior.

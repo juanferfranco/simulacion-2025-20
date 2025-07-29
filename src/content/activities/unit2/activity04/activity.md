@@ -1,58 +1,16 @@
-#### Escritura usando punteros
+#### Explora posibilidades
 
-**Enunciado**: un puntero es una variable que almacena la dirección de memoria de otra variable. Observa el siguiente programa escrito en C++:
+Vamos a darle una mirada a la clase p5.Vector [aquí](https://p5js.org/reference/p5/p5.Vector/).
 
-``` cpp
-int a = 10;
-int* p;
-p = &a;
-*p = 20;
-```
+:::caution[📤 Bitácora]
+- ¿Para qué sirve el método mag()? Nota que hay otro método llamado magSq(). ¿Cuál es la diferencia entre ambos? ¿Cuál es más eficiente?
+- ¿Para qué sirve el método normalize()?
+- Te encuentras con un periodista en la calle y te pregunta ¿Para qué sirve el método dot()? ¿Qué le responderías en un frase?
+- El método dot() tiene una versión estática y una de instancia. ¿Cuál es la diferencia entre ambas?
+- Ahora el mismo periodista curioso de antes te pregunta si le puedes dar una intuición geométrica acerca del producto cruz. 
+Entonces te pregunta ¿Cuál es la interpretación geométrica del producto cruz de dos vectores? Tu respuesta debe incluir qué pasa con la orientación y la magnitud del vector resultante.
+- ¿Para que te puede servir el método dist()?
+- ¿Para qué sirven los métodos normalize() y limit()?
+:::
 
-El programa anterior modifica el contenido de la variable **a** por medio de la variable **p**. **p** es un puntero porque almacena la dirección de memoria de la variable **a**. En este caso el valor de la variable **a** será 20 luego de ejecutar *p = 20;. 
 
-Ahora analiza con detenimiento:
-
-- ¿Cómo se **declara** un puntero en C++? 
-
-``` cpp
-int* p;
-```
-
-**p** es una variable que almacenará la dirección de otra variable. Dicha variable almacenará número enteros.
-
-- ¿Cómo se **define** (nota que antes preguntamos cómo se **declara**) un puntero en C++? 
-
-``` cpp
-p = &a;. 
-```
-
-Definir el puntero es **inicializar** el valor del puntero, es decir, guardar la dirección de una variable. En este caso p contendrá la dirección de a o podemos decir que p apunta a **a**
-
-- ¿Cómo se almacena en C++ la dirección de memoria de una variable? Con el operador **&**. 
-
-``` cpp
-p = &a;
-```
-
-- ¿Cómo se escribe el contenido de la variable a la que apunta un puntero? Con el operador *. 
-
-``` cpp
-*p = 20;
-```
-
-En este caso como **p** contiene la dirección de **a**. Por tanto, se está modificando el valor 
-de la variable **a** por medio de **p**.
-
-Ahora tu misión será convertir este programa a ensamblador:
-
-``` cpp
-int a = 10;
-int* p;
-p = &a;
-*p = 20;
-```
-
-- Por favor, te ruego que verifiques con el simulador. No olvides que p debe guardar la dirección de **a** 
-
-**Entrega**: la solución al problema anterior.
