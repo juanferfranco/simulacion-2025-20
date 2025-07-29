@@ -1,12 +1,10 @@
 #### Motion 101
 
-Ahora vas a leer y analizar con mucho detenimiento la sección 
-[Motion with vectors](https://natureofcode.com/vectors/#motion-with-vectors). El autor propone un 
-marco de movimiento llamado motion 101.
-
-¿En qué consiste motion 101?
+En la sección del texto guía llamada [Motion with vectors](https://natureofcode.com/vectors/#motion-with-vectors), 
+el autor propone un marco de movimiento llamado motion 101. Así mismo, el [ejemplo 1.7](https://natureofcode.com/vectors/#example-17-motion-101-velocity) 
+muetra cómo se aplica este marco en un ejemplo simple.
 
 :::caution[📤 Bitácora]
-- Escribe un breve resumen de motion 101.
-- Crea un ejemplo simple que ilustre los conceptos de motion 101.
+- Cuál es el concepto del marco motion 101 y cómo se interpreta geométricamente.
+- ¿Cómo se aplica motion 101 en el ejemplo?
 :::

@@ -11,10 +11,6 @@ Comencemos por el ejemplo: [Example 1.2: Bouncing Ball with Vectors!](https://na
 :::caution[📤 Bitácora] 
 - ¿Cómo funciona la suma dos vectores en p5.js?
 - ¿Por qué esta línea position = position + velocity; no funciona?
-
-
-
-
-**Entrega**: escribe en tu bitácora la solución a las preguntas anteriores.
+:::
 
 

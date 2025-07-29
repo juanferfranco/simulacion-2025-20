@@ -1,16 +1,18 @@
-####  Diseño: exploración de la idea
-
-Diseña una pieza de arte generativo interactivo en tiempo real que 
-utilice los conceptos de motion 101, vectores y algunos algoritmos de la unidad
-anterior. Vas a probar un algorimo para calcular la aceleración diferente a los 
-que analizaste en esta unidad.
+#### Autoevaluación
 
 :::caution[📤 Bitácora]
-En tu bitácora:
+Sin consultar tus notas, responde desde tu memoria:
 
-1. Describe el concepto de tu pieza de arte generativo.
-2. ¿Cómo piensas aplicar el marco MOTION 101 y por qué?
-3. ¿Qué algoritmo de aceleración vas a utilizar? ¿Por qué?
-4. El contenido generado debe ser interactivo. Puedes utilizar mouse, teclado, cámara, micrófono, 
-etc, para variar los parámetros del algoritmo en tiempo real.
+**Parte 1: recuperación de conocimiento (Retrieval Practice)**
+
+1. Escribe la "receta" del marco MOTION 101.
+2. ¿Cómo se relaciona el marco MOTION 101 con los conceptos de position, velocidad y aceleración?
+3. Si tuvieras que explicar el concepto de motion 101 de manera geométrica, ¿Cómo lo harías?
+
+**Parte 2: reflexión sobre tu proceso (Metacognición)**
+
+1. ¿Qué fue lo más desafiante en la Actividad 08? ¿El concepto creativo, la implementación del algoritmo de aceleración o la integración de la interactividad?
+2. ¿Tu algoritmo de aceleración produjo el efecto que esperabas? Describe un momento "sorpresa" (esperado o inesperado) durante su desarrollo.
+3. ¿Cómo ha cambiado tu forma de pensar sobre el "movimiento" en una pantalla después de esta unidad?
+4. Si tuvieras una semana más, ¿qué mejorarías o qué otro algoritmo de aceleración te gustaría experimentar?
 :::
