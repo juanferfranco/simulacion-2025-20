@@ -3,24 +3,408 @@ title: Unidad 3
 unitId: unit3
 ---
 
-import ActivityPlaceholder from '../../../components/ActivityPlaceholder.astro';
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="danger">Esta unidad está en construcción y todo lo que veas 
+aquí puede cambiar. NO INICIES A TRABAJAR AÚN</Aside>
 
 ## Introducción 📜
 
-## ¿Qué aprenderás en esta unidad? 💡
+En esta unidad, explorarás el concepto de fuerzas y cómo se aplican en la 
+creación de sistemas interactivos dinámicos. Partiendo de la manipulación de 
+la aceleración vista en la unidad anterior, aprenderás a utilizar las leyes 
+de Newton para simular el movimiento de objetos en un entorno virtual. A 
+través de ejercicios prácticos, comprenderás cómo las fuerzas influyen en la 
+aceleración, velocidad y posición de los elementos visuales, y cómo modelar 
+diferentes tipos de fuerzas, incluyendo la fricción, la resistencia y la 
+gravedad. Además, explorarás la narrativa como un elemento clave para dar 
+sentido y propósito a las interacciones entre los elementos de la simulación. 
+Finalmente, integrarás la interactividad del usuario para enriquecer la 
+experiencia y el control sobre el sistema.
+
+## Set: ¿Qué aprenderás en esta unidad? 💡
+
+En esta fase inicial, establecerás las bases para comprender las fuerzas 
+en sistemas interactivos. Despertarás la curiosidad y establecerás conexiones 
+con conocimientos previos.
+
+### Actividad 01
+
+#### Inspiración
+
+Iniciemos observando un video acerca del artista [Alexander Calder](https://youtu.be/FUchd9wwBoI?si=b-s6SZWgt_EEdrOP) 
+
+### Actividad 02
+
+#### Más inspiración
+
+Te voy a presentar el estudio de diseño SOSO. Observa el proyecto [Data Structure](https://www.sosolimited.com/work/data-structure/).
+
+Tomando como inspiración el proyecto de Data Structure, explora cómo las experiencias 
+digitales pueden manifestarse en el mundo físico. Esto puede lograrse mediante la creación de instalaciones interactivas que fusionen elementos 
+digitales y físicos, utilizando técnicas como la proyección, la realidad aumentada y la fabricación digital.
+
+Por ejemplo, se podría desarrollar una instalación donde los jugadores interactúen con proyecciones en superficies físicas, creando una experiencia de juego que 
+trascienda la pantalla tradicional. Otra posibilidad es diseñar esculturas cinéticas controladas por algoritmos generativos, donde la animación digital 
+influya directamente en el movimiento físico de la obra.
+
+## Seek: Investigación 🔎
+
+En esta fase, profundizarás en la comprensión de las leyes de Newton y cómo se 
+aplican en la simulación de fuerzas. Analizarás ejemplos de código y resolverás 
+problemas para afianzar el conocimiento.
+
+### Actividad 03
+
+#### ¿Qué capítulo del libro guía vamos a trabajar?
+
+Exploremos juntos el siguiente capítulo del texto guía que trabajaremos. Se trata de la [unidad 2 del libro The nature of code](https://natureofcode.com/forces/). 
+
+### Actividad 04
+
+#### Marco Motion 101
+
+Rerpasemo rápido de qué se trata:
+
+``` js
+
+let mover;
+
+function setup() {
+    createCanvas(640, 240);
+    mover = new Mover();
+}
+
+function draw() {
+    background(255);
+    mover.show();
+    mover.update();
+    mover.checkEdges();
+}
+
+.
+.
+.
+
+update() {
+
+    // Aquí calculo la aceleración
+    .
+    .
+    .
+    this.velocity.add(this.acceleration);
+    this.velocity.limit(this.topSpeed);
+    this.position.add(this.velocity);
+}
+.
+.
+.
+
+```
+
+### Actividad 05
+
+#### ¿Y qué relación tiene esto de las leyes de Newton con al arte generativo?
+
+Antes de comenzar, disfruta esta [simulación](https://wipaweeeeee.github.io/creativeCoding/lawsOfAttraction/index.html) donde puedes experimentar de manera creativa las leyes de la atracción. Ahora si, volviendo 
+al lío de Monte Pío (pero no tanto). 
+
+La ecuación vectorial de la segunda ley de Newton se expresa como:
+
+$$
+\sum \vec{F} = m \vec{a}
+$$
+
+Donde:
+
+- La fuerza neta o la sumatoria de todas las fuerzas que actúan sobre un objeto:
+
+  $$
+  \sum \vec{F}
+  $$
+
+- Masa del objeto:
+
+  $$
+  m
+  $$
+
+- Aceleración del objeto:
+
+  $$
+  \vec{a}
+  $$
+
+Nota entonces que: 
+
+$$
+\vec{a} = \frac{\sum \vec{F}}{m}
+$$
+
+Y lo siguiente lo dejaré a tu criterio, finalmente tu eres quien toma las decisiones en tu 
+mundo de arte generativo ¿Qué tal si la masa es igual a 1? Yo no veo por qué no, finalmente, 
+en el mundo de los pixeles el artista manda (¿O no?) 😉.
+
+$$
+\vec{a} = \sum \vec{F}
+$$
+
+Entonces ya tenemos la relación. En la unidad anterior tu definías en cada **frame** 
+de la simulación un algoritmo para la aceleración. Ahora, la aceleración en cada frame la 
+calcularemos como la influencia de todas las fuerzas sobre nuestros elementos gráficos 😹.
+
+Si volvemos a nuestro texto guía: The Nature of code, verás que un elemento gráfica que se mueva 
+en el canvas tendrá mínimo estas propiedades:
+
+``` js
+class Mover {
+  constructor() {
+    this.position = createVector();
+    this.velocity = createVector();
+    this.acceleration = createVector();
+  }
+}
+```
+
+Ahora, considera que en un frame actúan sobre este elemento dos fuerzas: viento y gravedad. Por 
+tanto, en ese frame aplicarás las dos fuerzas:
+
+``` js
+mover.applyForce(wind);
+```
+
+y luego:
+
+``` js
+mover.applyForce(gravity);
+```	
+
+Finalmente, en el método `applyForce` de la clase `Mover` tendrás algo como:
+
+``` js
+applyForce(force) {
+  this.acceleration = force;
+}
+```
+
+Y listo ¿Cierto?
+(No olvides que queremos calcular la aceleración en cada frame como la sumatoria de todas las fuerzas 
+que actúan sobre un objeto.)
+
+1. ¿Qué problema le ves a este planteamiento?  
+2. ¿Qué solución propones?  
+3. ¿Cómo lo implementarías en p5.js?
+
+### Actividad 06
+
+#### La fuerza neta debe ser acumulativa
+
+Ya te diste cuenta entonces que la fuerza neta es la sumatoria de todas las fuerzas que actúan sobre un objeto. Ahora, 
+¿Qué pasa si en un frame actúan sobre un objeto dos fuerzas? ¿Cómo calculas la aceleración resultante?
+
+``` js
+mover.applyForce(wind);
+mover.applyForce(gravity);
+.
+.
+.
+``` 
+
+``` js
+applyForce(force) {
+  // Segunda ley de Newton, pero con acumulación de fuerza, sumando todas las fuerzas de entrada a la aceleración
+  this.acceleration.add(force);
+}
+```
+
+⚠️
+
+Te diste cuenta qué pasó aquí con respecto a la actividad anterior? Vuelve a mirar.
+
+Entonces en cada frame, la aceleración se calcula como la sumatoria de todas las fuerzas que actúan sobre un objeto:
+
+``` js	
+mover.applyForce(wind);
+mover.applyForce(gravity);
+mover.update();
+```
+
+Y en el método update() se actualiza la velocidad y la posición del objeto:
+
+``` js
+update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+}
+```
+
+Pero calma 🧘. Notaste algo raro al final de update()?
+
+1. ¿Por qué es necesario multiplicar la aceleración por cero en cada frame?
+2. ¿Por qué se multiplica por cero **justo al final** de update()?
 
 
-## Investigación 🔎
+### Actividad 07
+
+#### En mi mundo los pixeles si tienen masa
+
+Como en tu mundo los pixeles tienen masa, entonces, ¿Qué pasa si en un frame actúan sobre un objeto dos fuerzas? ¿Cómo calculas la aceleración resultante?
+
+``` js
+mover.applyForce(wind);
+mover.applyForce(gravity);
+```
+
+``` js
+applyForce(force) {
+    // Asume que la masa es 10
+    force.div(10);
+    this.acceleration.add(force);
+}
+```
+
+¿Y listo cierto? Pues ¡No! 🤣 
+
+¿Qué ves raro?  
+(Recuerda, ¿Cuándo se pasa algo a un función por valor y cuándo por referencia? En este caso, **force** es 
+objeto de la clase p5.Vector, es decir, es un objeto que se pasa por referencia. ¿Qué implica esto?)
 
 
-## Aplicación 🛠
+### Actividad 08
 
-🚧 Esta parte de la unidad la realizarás la próxima semana en la sesión 1. 
-Vas a aplicar lo aprendido en las actividades anteriores. Por tanto, es necesario que te prepares 
-para esta sesión porque será muy intensa y tendrás que terminarla antes de la sesión 2 de esta 
-semana.
+#### Paso por valor y paso por referencia
 
-## Consolidación y metacognición 🤔
+En el siguiente código:
 
-🚧 Esta parte de la unidad la realizarás en la sesión 2 de la semana entrante.
+``` js	
+let friction = this.velocity.copy();
+let friction = this.velocity;
+```
 
+1. ¿Cuál es la diferencia entre las dos líneas?
+2. ¿Qué podría salir mal con let friction = this.velocity;
+
+De nuevo, toca repasar. ¿Cuál es la diferencia entre copiar por VALOR y por REFERENCIA?
+
+3. En el fragmento de código ¿Cuándo es por VALOR y cuándo por REFERENCIA.
+
+### Actividad 09
+
+#### Modelando fuerzas
+
+En tu mundo de pixeles tu puedes crear las fuerzas o las puedes modelar.  
+
+Vamos a probar con lo segundo, modelar una fuerza. Ve a la sección 
+[Modeling forces](https://natureofcode.com/forces/#modeling-a-force) del texto guía. 
+
+:::caution[📤 Bitácora]
+
+Inventa tres obras generativas interactivas, uno para cada una de las siguientes fuerzas:
+
+- Fricción.
+- Resistencia del aire y de fluidos.
+- Atracción gravitacional.
+
+1. Explica cómo modelaste cada fuerza.
+2. Conceptualmente cómo se relaciona la fuerza con la obra generativa.
+3. Copia el enlace a tu ejemplo en p5.js.
+4. Copia el código.
+5. Captura una imagen representativa de tu ejemplo.
+:::
+
+## Apply: Aplicación 🛠
+
+En esta fase, aplicarás los conceptos aprendidos creando una obra generativa 
+interactiva en tiempo real que involucren diferentes tipos de fuerzas.
+
+### Actividad 10
+
+#### El problema de los n-cuerpos
+
+Vas a diseñar e implementar una obra generativa interactiva en tiempo real inspirada en el 
+problema de los n-cuerpos. En el texto guía tienes una sección que te puede ayudar a entender 
+cómo modelar este problema, pero la idea es que uses tu creatividad para crear algo diferente 
+basado en ese concepto y en las esculturas cinéticas de Alexander Calder.
+
+:::caution[📤 Bitácora]
+1. Diseña e implementa tu obra generativa interactiva en tiempo real.
+    
+    - Debe ser interactiva.
+    - Debes usar al menos dos algoritmos diferentes de la unidad 1, además de random.
+
+2. Explica cómo modelaste el problema de los n-cuerpos en tu obra.
+3. Copia el enlace a tu simulación en p5.js.
+4. Copia el código.
+5. Captura una imagen representativa de tu ejemplo.
+:::
+
+## Reflect: Consolidación y metacognición 🤔
+
+### Actividad 12
+
+#### Autoevaluación
+
+:::caution[📤 Bitácora]
+Sin consultar tus notas, responde desde tu memoria:
+
+**Parte 1: recuperación de conocimiento (Retrieval Practice)**
+
+1. Escribe la ecuación vectorial de la segunda ley de Newton y explica cada uno de sus componentes.
+2. ¿Por qué es necesario multiplicar la aceleración por cero en cada frame del método update()?
+3. Explica la diferencia entre paso por valor y paso por referencia cuando aplicamos fuerzas a un objeto.
+4. ¿Cuál es la diferencia conceptual entre modelar fuerzas (como fricción, gravedad) y simplemente definir 
+algoritmos de aceleración?
+
+**Parte 2: reflexión sobre tu proceso (Metacognición)**
+
+1. ¿Qué fue lo más desafiante en la Actividad 10 (problema de los n-cuerpos)? ¿El concepto creativo, 
+la implementación de las fuerzas o la integración de la interactividad?
+2. ¿Las fuerzas que modelaste produjeron el comportamiento que esperabas? Describe un momento "sorpresa" 
+(esperado o inesperado) durante el desarrollo.
+3. ¿Cómo ha cambiado tu forma de pensar sobre la "física" en el arte generativo después de esta unidad?
+4. Si tuvieras una semana más, ¿Qué otras fuerzas te gustaría modelar o cómo mejorarías tu simulación del 
+problema de los n-cuerpos?
+:::
+
+### Actividad 13
+
+#### Coevaluación
+
+Analiza el trabajo de un compañero para ayudarle a mejorar y para aprender de sus soluciones.
+
+:::caution[📤 Bitácora]
+1. Intercambia la URL de tu bitácora con un compañero.
+2. Analiza su **Actividad 10** (problema de los n-cuerpos). Ejecuta su simulación, lee su concepto y revisa su código.
+3. En tu propia bitácora, escribe una retroalimentación constructiva para tu compañero, evaluando:
+   * **Claridad del Concepto:** ¿La obra visual refleja la inspiración en las esculturas cinéticas de Calder y 
+   el problema de los n-cuerpos?
+   * **Implementación de Fuerzas:** ¿Se aplican correctamente las leyes de Newton? ¿Las fuerzas se acumulan apropiadamente?
+   * **Creatividad en el Modelado:** ¿El modelado de fuerzas es interesante y genera comportamientos únicos?
+   * **Calidad de la Interactividad:** ¿La interacción permite explorar diferentes aspectos del sistema de fuerzas?
+4. Conversa con tu compañero sobre las obras que cada uno creó. En tu bitácora, comenta:
+   * ¿Qué fue lo que más te llamó la atención del trabajo de tu compañero?
+   * ¿Qué aprendiste de su enfoque para modelar fuerzas?
+   * ¿Qué técnica o idea de su implementación te gustaría aplicar en tus futuros proyectos?
+:::
+
+### Actividad 14
+
+#### Feedback
+
+Gracias por ayudarme a mejorar esta unidad para tus futuros compañeros.
+
+:::caution[📤 Bitácora]
+
+Responde con total sinceridad:
+
+1. **Continuar:** ¿Qué actividad o concepto de esta unidad te resultó más "revelador" para entender 
+las fuerzas en el arte generativo?
+2. **Dejar de hacer:** ¿Hubo alguna actividad que te pareció redundante o menos efectiva para 
+comprender el modelado de fuerzas?
+4. **Progresión conceptual:** ¿El paso de manipular aceleración directamente (unidad 2) a modelar 
+fuerzas (unidad 3) te pareció una progresión natural y efectiva? ¿Por qué?
+5. **Conexión arte-física:** ¿Cómo te ha ayudado esta unidad a ver la conexión entre conceptos físicos 
+y expresión artística? ¿Te sientes más cómodo "jugando" con las leyes de la física en tus creaciones?
+6. **Comentario adicional:** ¿Algo más que quieras compartir sobre tu experiencia explorando fuerzas en el arte generativo?
+:::
