@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/starlight": "^0.35.2",
     "@babel/runtime": "^7.26.10",
-    "astro": "^5.12.9",
+    "astro": "^5.13.3",
     "esbuild": ">=0.25.0",
     "p5": "^1.11.7",
     "rehype-mathjax": "^6.0.0",
