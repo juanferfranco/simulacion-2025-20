@@ -3,24 +3,124 @@ title: Unidad 5
 unitId: unit5
 ---
 
-import ActivityPlaceholder from '../../../components/ActivityPlaceholder.astro';
+import { Aside } from '@astrojs/starlight/components';
 
 ## Introducción 📜
 
-## ¿Qué aprenderás en esta unidad? 💡
+En esta unidad vas a explorar los sistemas de partículas. Los sistemas de partículas son conjuntos de partículas 
+que interactúan entre sí y con su entorno. Estos sistemas son fundamentales en el mundo del arte y diseño generativo, 
+ya que permiten crear composiciones complejas y dinámicas a partir de reglas simples.
 
 
-## Investigación 🔎
+## Evaluación de la unidad 5
+
+<Aside type="note" title="RUBRICA!">
+La evaluación de esta unidad la realizaremos en la segunda sesión de la segunda semana. Recuerda que la bitácora 
+se cierra 10 minutos antes de iniciar la sesión de evaluación. Considera la siguiente rúbrica:
+
+| Criterio | **Inicial (0.0 - 1.9)** | **En desarrollo (2.0 - 3.4)** | **Logrado (3.5 - 4.4)** | **Excelente (4.5 - 5.0)** |
+| :--- | :--- | :--- | :--- | :--- |
+| **1. Investigación y Experimentación (Evidencia en Actividad 2)** | El análisis de los ejemplos es incompleto o incorrecto. No se realizan las modificaciones solicitadas o estas no funcionan. | Se analizan los ejemplos y se realizan las modificaciones, pero las explicaciones se limitan a describir qué hace el código, sin explicar por qué funciona de esa manera. | Se explica correctamente la función de los componentes clave de cada ejemplo (ej. cómo se gestiona el array de partículas, qué línea aplica una fuerza). Se justifica la elección de los conceptos de unidades anteriores aplicados en las modificaciones. | Se explica la **interrelación** entre los componentes de cada ejemplo (ej. cómo la gestión del array afecta directamente al rendimiento). La justificación de los conceptos aplicados explica cómo estos **interactúan entre sí** para lograr el resultado deseado. |
+| **2. Intención y Diseño (Proceso de Actividad 3)** | La bitácora no incluye un concepto definido ni artefactos de diseño (bocetos, diagramas). | Se describe un concepto, pero es vago o no se refleja en la obra final. Se incluyen artefactos de diseño, pero no se explica cómo guiaron la implementación. | La bitácora presenta un concepto definido y artefactos de diseño. La obra final es una **implementación reconocible** de lo planeado. El propósito de la interacción está explícitamente descrito. | Los artefactos de diseño y la descripción del concepto en la bitácora funcionan como un plano claro. **Cada elemento principal** de la obra (comportamientos, estética, interacción) **se puede vincular directamente** a una decisión documentada en el proceso de diseño. |
+| **3. Aplicación Técnica (Código de Actividad 3)** | El código no implementa todos los conceptos requeridos o presenta errores que impiden su funcionamiento. La memoria no se gestiona (el número de partículas crece indefinidamente). | El código es funcional pero está escrito en un único bloque o con una organización mínima. Los conceptos requeridos están presentes, pero su implementación es simple. | El código está estructurado usando **clases para las partículas y funciones para las tareas principales**. Todos los conceptos requeridos funcionan correctamente. El programa elimina las partículas que ya no son necesarias, manteniendo el tamaño del array controlado. | El código está organizado en **clases modulares que encapsulan datos y comportamientos**. El uso de herencia crea tipos de partículas con **comportamientos claramente distintos y observables**. El código evita cálculos repetitivos o innecesarios dentro del bucle de dibujo principal (`draw`). |
+| **4. Calidad de la Obra Final (Artefacto Entregado)** | La obra se detiene, presenta errores visuales notorios (glitches) o no responde a la interacción al ejecutarse. | La obra funciona sin errores, pero el rendimiento (frame rate) disminuye notablemente con el tiempo o con la interacción del usuario. El resultado visual es repetitivo. | La obra se ejecuta de forma **estable y con un frame rate constante** en un uso normal. Responde a la interacción del usuario de manera predecible y consistente, tal como se describe en la bitácora. | La obra no solo es estable, sino que también demuestra **atención al detalle en la respuesta interactiva** (ej. transiciones suaves, feedback visual claro). El sistema generativo produce una **amplia variedad de resultados visuales** sin dejar de ser coherente con el concepto. |
 
 
-## Aplicación 🛠
+</Aside>
 
-🚧 Esta parte de la unidad la realizarás la próxima semana en la sesión 1. 
-Vas a aplicar lo aprendido en las actividades anteriores. Por tanto, es necesario que te prepares 
-para esta sesión porque será muy intensa y tendrás que terminarla antes de la sesión 2 de esta 
-semana.
+<Aside type="danger" title="Evidencias en bitácora">
+En la bitácora debes incluir las siguientes evidencias:
+- Las solicitudes de la actividad 2 (Investigación).
+- Las solicitudes de la actividad 3 (Aplicación).
+- Tu mismo vas a propoer una nota basada en la rúbrica y justificarás 
+cada criterio de la rúbrica indicando qué evidencias presentes en la bitácora 
+justifican la nota que propones.
+- Si tu bitácora no incluye la nota propuesta y la justificación tendrás una nota de 0.
+</Aside>
 
-## Consolidación y metacognición 🤔
 
-🚧 Esta parte de la unidad la realizarás en la sesión 2 de la semana entrante.
+## Set: ¿Qué aprenderás en esta unidad? 💡
+
+En esta unidad vas a experimentar con aplicaciones interactivas que tendrán las siguientes características:
+
+* Emitirán partículas que se moverán en el espacio.
+* Las partículas estarán sujetas a fuerzas que las harán cambiar de dirección y velocidad.
+
+Ten presente que estos sistemas se ejecutarán en tiempo real usando la CPU. Por lo tanto, 
+deberás tener en cuenta las limitaciones de rendimiento y optimización al diseñar tus sistemas de partículas. Mejor 
+dicho, no podrás tener miles de partículas en pantalla sin que el rendimiento se vea afectado. Para lograr 
+esto necesitarás recurrir a la programación de la GPU usando shaders. Pero esto lo harás en la siguiente temporada.
+
+### Actividad 01
+
+
+Solo para antojarte un poco, te pediré que mires el trabajo de uno de los artistas generativos más reconocidos 
+actualmente. Se trata de [Refik Anadol](https://refikanadol.com/)
+
+
+## Seek: Investigación 🔎
+
+En esta fase, repasarás los conceptos de herencia y polimorfismo que aplicarás para crear sistemas de partículas que 
+se comporten y se vean de manera diferente. Adicionalmente, aplicarás fuerzas a las partículas para que se muevan e interactúan con el entorno.
+
+### Actividad 02
+
+#### Revisa y repasa algunos conceptos
+
+Dale una mirada al [capítulo sobre sistemas de partículas](https://natureofcode.com/particles/) 
+del texto guía del curso. Explora libremente, pero te pediré que revises especialmente los siguientes conceptos:
+
+1. Revisa detalladamente el ejemplo 4.2: [an Array of Particles](https://natureofcode.com/particles/#example-42-an-array-of-particles).
+
+2. Analiza el ejemplo 4.4: [a System of Systems](https://natureofcode.com/particles/#example-44-a-system-of-systems).  
+
+3. Analiza el ejemplo 4.5: [a Particle System with Inheritance and Polymorphism](https://natureofcode.com/particles/#example-45-a-particle-system-with-inheritance-and-polymorphism).
+
+4. Analiza el ejemplo 4.6: [a Particle System with Forces](https://natureofcode.com/particles/#example-46-a-particle-system-with-forces).  
+
+5. Analiza el ejemplo 4.7: [a Particle System with a Repeller](https://natureofcode.com/particles/#example-47-a-particle-system-with-a-repeller).
+
+🧐🧪✍️  En tu bitácora responde a esta pregunta para cada una de las simulaciones: ¿Cómo se está gestionando 
+la creación y la desaparción de las partículas y cómo se gestiona la memoria en cada una de las simulaciones?
+
+Además te pediré que hagas los siguientes experimentos y los reportes en tu bitácora:
+
+1. Vas a modificar cada una de las simulaciones anteriores incluyen en cada una, al menos un concepto de las 
+unidades anteriores, pero no repitas concepto, la idea es que repases al menos uno de cada unidad.
+2. Vas a gestionar la creación y la desaparición de las partículas y la memoria. Explica cómo lo hiciste (aunque es posible que la simulación ya lo haga, trata de identificarlo de nuevo y explicarlo con tus palabras).
+3. Explica qué concepto aplicaste, cómo lo aplicaste y por qué.
+4. Incluye un enlace a tu código en el editor de p5.js.
+5. Incluye el código fuente de cada una de las simulaciones.
+6. Captura de pantallas de cada una de las simulaciones con las imágenes que más te gusten como resultado de la ejecución de cada una de las simulaciones.
+
+
+## Apply: Aplicación 🛠
+
+### Actividad 03
+
+Es hora de una nueva creación. Diseña e implementa una obra de arte generativa algorítmica interactiva en tiempo real en p5.js que cumpla con los siguientes requisitos:
+
+Documenta el proceso de creación, incluyendo la idea inicial, bocetos, experimentación con el código y el resultado final.
+
+1. Es unidad incluye una novedad: **DISEÑO**. Debes intencionar tu obra. Esta vez te pediré que DISEÑES antes de generar código. Define un concepto, 
+haz bocetos, define la interacción, etc. ¿Cuál es el concepto de tu obra? ¿Qué quieres comunicar con ella?
+2. Debes utilizar los conceptos de herencia y polimorfismo que revisaste en la fase de investigación.
+3. Debes utilizar al menos un concepto de cada una de las unidades anteriores: 4 conceptos.
+4. Debes definir cómo vas a gestionar el tiempo de vida de las partículas y la memoria.
+5. La obra debe ser interactiva en tiempo real. Puedes usar teclado, mouse, música, el micrófono, video, sensor o cualquier otro dispositivo de entrada.
+6. Incluye un enlace a tu código en el editor de p5.js.
+7. Incluye el código fuente.
+8. Captura de pantallas de tu obra con las imágenes que más te gusten
+
+## Reflect: Consolidación y metacognición 🤔
+
+Una vez termines esta unidad invierte en ti unos minutos para 
+reflexionar sobre tu proceso de aprendizaje.
+
+1. Realiza un diagrama conceptual donde incluyas todos los conceptos que has aprendido en las 
+unidades 1 a 5.
+2. ¿Qué has venido haciendo bien en tu proceso durante el curso que debas mantener en la 
+próxima unidad?
+3. ¿Qué has venido haciendo mal en tu proceso durante el curso que debas cambiar en la
+próxima unidad?
 
